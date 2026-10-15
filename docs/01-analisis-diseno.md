@@ -1,3 +1,29 @@
+# Análisis y diseño
+## 1. Descripción del problema
+Se representara un sistema de monitoreo y control automatizado para un invernadero inteligente, el objetivo principal es supervisar en tiempo real las condiciones ambientales del cultivo y responder activamente para mantener un entorno óptimo para el desarrollo de las plantas.
+
+## 2. Identificación de objetos
+
+1- sensor de temperatura: es un componente que se encarga de captar la temperatura ambiental, y es de vital importancia  para saber si el ambiente es adecuado para las plantas.
+
+2- sensores de humedad ambiental y de suelo: los debemos de usar dado que se requiere saber si la humedad en el invernadero es adecuada y favorecedora para las plantas, y estos mediran la humedad en el ambiente y en el suelo. 
+
+
+3- sistema de riego: estara presente para cser el actuador del sensor de humedad, es el que se encargara de humedecer o mojar el suelo.
+
+
+## 3. Estado y comportamiento
+Los sensores compartiran un identificador único (id), una ubicación física en el invernadero (ubicación), estaran en un estado de funcionamiento (activo/inactivo) y una lectura analogica registrada (última medición).
+
+## 4. Características comunes y especialización
+
+Todos estos sensores nos permitiran tener lectura, ver estados, y evaluar rangos.estos solo daran dos tipos de medidas, en grados celcius y en porcentajes, todos los llamaremos sensor pero cada uno tendra su variable y su tipo de variable.
+
+## 5. Relaciones entre objetos
+
+El SistemaRiego va a colaborar directamente con SensorHumedadSuelo para obtener la lectura del sustrato y decidir si debe activarse ya que dependen de si. El SistemaRiego requiere la ultima medicion del SensorHumedadSuelo para verificar si la humedad está por debajo del límite permitido, y asi realizar comparaciones para saber si debe o no debe de comenzar el riego.
+
+
 | Clase | Atributos propuestos | Tipo de dato | Métodos propuestos | Responsabilidad |
 | :--- | :--- | :--- | :--- | :--- |
 | `Sensor` | `id`<br>`ubicacion`<br>`activo`<br>`ultimaMedicion` | `String`<br>`String`<br>`boolean`<br>`double` | `getId()`<br>`getUbicacion()`<br>`isActivo()`<br>`getUltimaMedicion()`<br>`actualizarMedicion(double)`<br>`evaluarMedicion()` | Servir como superclase base para almacenar el estado y comportamiento común de cualquier sensor del invernadero. |
@@ -5,6 +31,8 @@
 | `SensorHumedad` | `rangoOptimoMin`<br>`rangoOptimoMax` | `double`<br>`double` | `evaluarMedicion()` | Especialización para evaluar el porcentaje de humedad en el aire. |
 | `SensorHumedadSuelo` | `nivelCriticoSecado` | `double` | `evaluarMedicion()`<br>`requiereRiego()` | Especialización para evaluar la humedad de la tierra y determinar la necesidad de riego. |
 | `SistemaRiego` | `id`<br>`encendido`<br>`caudalLitrosPorMinuto` | `String`<br>`boolean`<br>`double` | `activarRiego()`<br>`desactivarRiego()`<br>`isEncendido()`<br>`evaluarYRegar(SensorHumedadSuelo)` | Actuador que controla la activación/desactivación del flujo de agua. |
+
+## Diagrama UML inicial
 ![Diagrama UML inicial](uml-inicial.png)
 
 Porque representan de forma modular los componentes fisicos esenciales del sistema de monitoreo y control del invernadero.
@@ -36,6 +64,7 @@ Orimero se ejecuta el constructor de la superclase y posteriormente el de la sub
 
 Se utiliza para delegar a la superclase `Sensor` la inicialización de los atributos comunes (`id`, `ubicacion`, `ultimaMedicion`).
 
+## @Override
 
 Sobreescribi el método `evaluarMedicion()`.
 
@@ -108,4 +137,38 @@ Se elimino en el diagrama SistemaRiego() y se dejaron los métodos activarRiego(
 ![Diagrama UML final](uml-final.png)
 
 
+
+
+## Reflexión final
+
+¿Cuál es la superclase de tu sistema y cuáles son sus subclases?
+La super clase es: Sensor. Y las subclases son: SensorTemperatura, SensorHumedad y SensorHumedadSuelo.
+
+¿Por qué existe una relación de herencia entre ellas?
+Existe porque los tres tipos de sensores comparten atributos y comportamientos comunes.
+
+¿Qué atributos o comportamientos decidiste colocar en la superclase y por qué?
+Coloqué los atributos id, ubicacion, activo y ultimaMedicion y el método base evaluarMedicion(). Los ubique ahí para no duplicar código en las subclases porque todos los sensores del invernadero requiere identificarse y almacenar sus lecturas.
+
+
+¿Para qué utilizaste super?
+Utilicé super para: id, ubicacion, ultimaMedicion.
+
+¿Qué método sobrescribiste?
+Sobrescribi el método evaluarMedicion() en las tres subclases utilizando la anotacion @Override.
+
+¿Dónde puedes observar polimorfismo en tu programa?
+Se observa en Main.java en el bucle for (Sensor sensor : sensores).
+
+¿Dónde puedes observar enlace dinámico?
+Se observa dentro del bucle al ejecutar sensor.evaluarMedicion().
+
+¿Para qué utilizaste instanceof y casting?
+Utilicé instanceof para verificar de una forma segura si algun objeto de Sensor era en realidad un de SensorTemperatura o un SensorHumedadSuelo. El casting (SensorTemperatura) sensor me permitió convertir la referencia para llamar a métodos específicos no declarados en la superclase, como recalibrarUnidad().
+
+¿Qué cambio realizaste entre tu UML inicial y tu UML final?
+Elimine el SistemaRiego().
+
+Si tuvieras que agregar un SensorLuminosidad, ¿qué partes del programa tendrías que modificar?
+tendia que crear una nueva clase para el SensorLuminosidad, y posteriormente agregar o codificar su parte en el main.java.
 
