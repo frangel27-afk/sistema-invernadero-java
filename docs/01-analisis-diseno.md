@@ -47,11 +47,11 @@ Este metodo nos permite aplicar el polimorfismo haciendo que el código maestro 
 
 
 
-| Tipo de referencia | Tipo real del objeto | Método que se ejecuta |
-| :--- | :--- | :--- |
-| `Sensor` | `SensorTemperatura` | `SensorTemperatura.evaluarMedicion()` |
-| `Sensor` | `SensorHumedad` | `SensorHumedad.evaluarMedicion()` |
-| `Sensor` | `SensorHumedadSuelo` | `SensorHumedadSuelo.evaluarMedicion()` |
+| Tipo de referencia | Tipo real del objeto  | Método que se ejecuta |
+| :--- |:----------------------| :--- |
+| `Sensor` | `SensorTemperatura`   | `SensorTemperatura.evaluarMedicion()` |
+| `Sensor` | `SensorHumedad`       | `SensorHumedad.evaluarMedicion()` |
+| `Sensor` | `SensorHumedadSuelo`  | `SensorHumedadSuelo.evaluarMedicion()` |
 
 
 
@@ -77,6 +77,5 @@ sucede una excepción en el tiempo de ejecución `ClassCastException`.
 
 Pues basicamente porque nos acopla el código a tipos concretos y rompe la extensibilidad ademas de que viola el principio .
 
-El `SistemaRiego` usa información proporcionada por los sensores  por eso se relacionan y  por lo tanto no es una herencia.
 
 
