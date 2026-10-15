@@ -101,3 +101,11 @@ El `SistemaRiego` no se considera como sensor pero se utiliza información de `S
 | Realizar Casting | `(SensorTemperatura) sensor` | Permite llamar `recalibrarUnidad()` | Ejecutado sin errores |
 | Humedad Suelo baja | Lectura de 18% (<30%) | Activa el sistema de riego | Riego ACTIVADO |
 
+## Cambios realizados al diseño
+Se elimino en el diagrama SistemaRiego() y se dejaron los métodos activarRiego(), desactivarRiego() e isEncendido() para reflejar con precisión el cumplimiento de la encapsulación y el control manual del estado del actuador.
+
+## Diagrama UML final
+![Diagrama UML final](uml-final.png)
+
+
+
