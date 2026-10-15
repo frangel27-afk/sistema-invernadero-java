@@ -78,4 +78,13 @@ sucede una excepción en el tiempo de ejecución `ClassCastException`.
 Pues basicamente porque nos acopla el código a tipos concretos y rompe la extensibilidad ademas de que viola el principio .
 
 
+Porque la referencia del `Sensor` no posee los métodos específicos en las subclases.
+
+Nos ayuda a verifica el tiempo en que se ejecuta y si el objeto apuntado esta en una instancia real de una clase determinada.
+
+El programa interrumpirá la ejecución.
+
+Porque nos obligaría a escribir cadenas de if/else cada vez que se agregue una nueva subclaseteniendo que hacer mas trabajo y perdiendo la simplicidad del polimorfismo.
+
+El `SistemaRiego` no se considera como sensor pero se utiliza información de `SensorHumedadSuelo`-
 
