@@ -77,6 +77,6 @@ sucede una excepción en el tiempo de ejecución `ClassCastException`.
 
 Pues basicamente porque nos acopla el código a tipos concretos y rompe la extensibilidad ademas de que viola el principio .
 
-El `SistemaRiego` usa información proporcionada por los sensores  por eso se relacionan y no es una herencia.
+El `SistemaRiego` usa información proporcionada por los sensores  por eso se relacionan y  por lo tanto no es una herencia.
 
 
