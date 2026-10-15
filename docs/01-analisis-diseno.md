@@ -55,7 +55,7 @@ Este metodo nos permite aplicar el polimorfismo haciendo que el código maestro 
 
 
 
-Porque existe una relación de herencia "es un" `SensorTemperatura` es una parte válida de `Sensor`.
+Porque existe una relación de herencia entre `SensorTemperatura` y `Sensor`.
 
 No lo puede hace directo ya que requiere un casting para hacer una comprobación porque no todo `Sensor` es de temperatura.
 
