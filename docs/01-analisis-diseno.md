@@ -88,3 +88,16 @@ Porque nos obligaría a escribir cadenas de if/else cada vez que se agregue una 
 
 El `SistemaRiego` no se considera como sensor pero se utiliza información de `SensorHumedadSuelo`-
 
+
+| Caso de prueba | Escenario / Entrada | Resultado esperado | Resultado obtenido |
+| :--- | :--- | :--- | :--- |
+| Crear sensores | Instanciar subclases | Conservan su estado inicial | Conservado correctamente |
+| Evaluar Temperatura | Lectura de 32.5 °C | Notifica "CRÍTICA ALTA" | Cumplido |
+| Evaluar Humedad Aire | Lectura de 55.0% | Notifica "ADECUADA" | Cumplido |
+| Evaluar Humedad Suelo| Lectura de 18.0% | Notifica "SUELO SECO" | Cumplido |
+| Arreglo de referencias `Sensor`| Matriz `Sensor[]` | Permite almacenar subclases | Almacenado correctamente |
+| Recorrer colección | Bucle `for` invocando `evaluarMedicion()` | Llama al método de cada subclase | Enlace dinámico verificado |
+| Comprobar con `instanceof`| `sensor instanceof SensorTemperatura` | Retorna `true` solo para temperatura | Identificación correcta |
+| Realizar Casting | `(SensorTemperatura) sensor` | Permite llamar `recalibrarUnidad()` | Ejecutado sin errores |
+| Humedad Suelo baja | Lectura de 18% (<30%) | Activa el sistema de riego | Riego ACTIVADO |
+
